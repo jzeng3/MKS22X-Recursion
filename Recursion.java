@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Recursion{
   public static void main(String[] args){
     System.out.println("Square root of 100, tolerance of 0.00001 (0.001%): " + sqrt(100, 0.00001));
@@ -5,9 +7,10 @@ public class Recursion{
     System.out.println("Square root of 0, tolerance of 0.00001 (0.001%): " + sqrt(0, 0.00001));
     System.out.println("Square root of 1, tolerance of 0.00001 (0.001%): " + sqrt(1, 0.00001));
     System.out.println("Square root of 0.25, tolerance of 0.00001 (0.001%): " + sqrt(0.25, 0.00001));
-    for (int i = 0; i < 46; i++){
+    for (int i = 0; i < 10; i++){
       System.out.println("fib term"+ i + ": " + fib(i));
     }
+    System.out.println(makeAllSums(1));
   }
 
   /*
@@ -66,4 +69,21 @@ private static double sqrtH(double n, double guess, double tolerance){
         return fibH(n-1, term1, term2);
       }
     }
+    // returns an arrayList of all possible sums from 1 to n inclusive
+    public static ArrayList<Integer> makeAllSums(int n){
+      ArrayList<Integer> listOfSums = new ArrayList<Integer>();
+      return makeAllSumsH(n, listOfSums, 1);
+   }
+
+   private static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> ary, int ans){
+     // if reached end of numbers, return the arraylist
+     if (n == 0){
+       return ary;
+     }
+     else{
+       ary.add(n);
+       return ary;
+     }
+   }
+
 }
