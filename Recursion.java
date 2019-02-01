@@ -80,23 +80,18 @@ private static double sqrtH(double n, double guess, double tolerance){
    private static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> ary, int ans, boolean include){
      // if reached end of numbers, return the arraylist
      if (n == 0){
+       ary.add(ans);
        return ary;
      }
      if (include){
-       ans += n;
-       System.out.println(ans);
-       ary.add(ans);
-       makeAllSumsH(n-1, ary, ans, true);
-       makeAllSumsH(n-1, ary, ans, false);
-       return ary;
+       makeAllSumsH(n-1, ary, ans+n, true);
+       makeAllSumsH(n-1, ary, ans+n, false);
      }
      else{
-       System.out.println(ans);
-       ary.add(ans);
        makeAllSumsH(n-1, ary, ans, true);
        makeAllSumsH(n-1, ary, ans, false);
-       return ary;
      }
+     return ary;
    }
 
 }
