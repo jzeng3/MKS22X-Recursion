@@ -10,7 +10,7 @@ public class Recursion{
     for (int i = 0; i < 10; i++){
       System.out.println("fib term"+ i + ": " + fib(i));
     }
-    System.out.println(makeAllSums(2));
+    System.out.println(makeAllSums(3));
   }
 
   /*
@@ -72,19 +72,30 @@ private static double sqrtH(double n, double guess, double tolerance){
     // returns an arrayList of all possible sums from 1 to n inclusive
     public static ArrayList<Integer> makeAllSums(int n){
       ArrayList<Integer> listOfSums = new ArrayList<Integer>();
-      return makeAllSumsH(n, listOfSums, 1);
+      makeAllSumsH(n, listOfSums, 0, true);
+      makeAllSumsH(n, listOfSums, 0, false);
+      return listOfSums;
    }
 
-   private static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> ary, int ans){
+   private static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> ary, int ans, boolean include){
      // if reached end of numbers, return the arraylist
      if (n == 0){
        return ary;
      }
-     else{
-       ary.add(ans);
+     if (include){
        ans += n;
+       System.out.println(ans);
        ary.add(ans);
-       return makeAllSumsH(n-1, ary, ans);
+       makeAllSumsH(n-1, ary, ans, true);
+       makeAllSumsH(n-1, ary, ans, false);
+       return ary;
+     }
+     else{
+       System.out.println(ans);
+       ary.add(ans);
+       makeAllSumsH(n-1, ary, ans, true);
+       makeAllSumsH(n-1, ary, ans, false);
+       return ary;
      }
    }
 
