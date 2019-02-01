@@ -5,6 +5,9 @@ public class Recursion{
     System.out.println("Square root of 0, tolerance of 0.00001 (0.001%): " + sqrt(0, 0.00001));
     System.out.println("Square root of 1, tolerance of 0.00001 (0.001%): " + sqrt(1, 0.00001));
     System.out.println("Square root of 0.25, tolerance of 0.00001 (0.001%): " + sqrt(0.25, 0.00001));
+    for (int i = 0; i < 46; i++){
+      System.out.println("fib term"+ i + ": " + fib(i));
+    }
   }
 
   /*
@@ -25,11 +28,12 @@ public static double sqrt(double n, double tolerance){
 */
 private static double sqrtH(double n, double guess, double tolerance){
    if (n == 0){
-     return 0;
+     return 0; // handle case of n being 0, i.e. sqrt(0) = 0
   }
   else{
+    // while difference between guess squared and n is within tolerance
     while (Math.abs( (Math.pow(guess,2) - n) / n * 100) > tolerance){
-      // System.out.println(guess);
+    // update the guess
     guess = (n/guess+guess)/2;
     }
     return guess;
@@ -41,15 +45,25 @@ private static double sqrtH(double n, double guess, double tolerance){
      *precondition: n is non-negative
      */
     public static int fib(int n){
-      return 0;
+      // call helper function
+      return fibH(n, 0, 1);
     }
-
-    private static int fibH(int n, long ans){
-      if (n <= 1){
-        return ans;
+    // helper function keeps track of previous two terms
+    private static int fibH(int n, int term1, int term2){
+      // base case
+      if (n <= 0){
+        return 0;
       }
+      // return sum of previous two terms
+      if (n <= 2){
+        return term1 + term2;
+      }
+      // sum up the two terms and update term1 and term2
       else{
-        
+        int newTerm = term1 + term2;
+        term1 = term2;
+        term2 = newTerm;
+        return fibH(n-1, term1, term2);
       }
     }
 }
