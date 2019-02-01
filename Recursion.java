@@ -10,7 +10,7 @@ public class Recursion{
     for (int i = 0; i < 10; i++){
       System.out.println("fib term"+ i + ": " + fib(i));
     }
-    System.out.println(makeAllSums(1));
+    System.out.println(makeAllSums(2));
   }
 
   /*
@@ -81,8 +81,10 @@ private static double sqrtH(double n, double guess, double tolerance){
        return ary;
      }
      else{
-       ary.add(n);
-       return ary;
+       ary.add(ans);
+       ans += n;
+       ary.add(ans);
+       return makeAllSumsH(n-1, ary, ans);
      }
    }
 
