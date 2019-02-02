@@ -73,25 +73,35 @@ private static double sqrtH(double n, double guess, double tolerance){
     public static ArrayList<Integer> makeAllSums(int n){
       ArrayList<Integer> listOfSums = new ArrayList<Integer>();
       makeAllSumsH(n, listOfSums, 0, true);
-      makeAllSumsH(n, listOfSums, 0, false);
+     makeAllSumsH(n, listOfSums, 0, false);
       return listOfSums;
    }
 
    private static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> ary, int ans, boolean include){
      // if reached end of numbers, return the arraylist
+     System.out.println("n " + n + "ans " + ans + "include " + include);
      if (n == 0){
-       ary.add(ans);
+       System.out.println("adding " + ans + " from base case");
+       if (include){ary.add(ans);}
+       System.out.println(ary);
        return ary;
      }
-     if (include){
+     else{
+       if (include){
+       System.out.println("include calls");
        makeAllSumsH(n-1, ary, ans+n, true);
        makeAllSumsH(n-1, ary, ans+n, false);
+return ary;
      }
      else{
+       System.out.println("not include calls");
        makeAllSumsH(n-1, ary, ans, true);
        makeAllSumsH(n-1, ary, ans, false);
+return ary;
      }
-     return ary;
+     }
+
+
    }
 
 }
