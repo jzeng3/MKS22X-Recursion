@@ -74,33 +74,22 @@ public class Recursion{
   // returns an arrayList of all possible sums from 1 to n inclusive
   public static ArrayList<Integer> makeAllSums(int n){
     ArrayList<Integer> listOfSums = new ArrayList<Integer>();
-    makeAllSumsH(n, listOfSums, 0, true);
-    makeAllSumsH(n, listOfSums, 0, false);
+    makeAllSumsH(n, listOfSums, 0);
     return listOfSums;
   }
 
-  private static void makeAllSumsH(int n, ArrayList<Integer> ary, int ans, boolean include){
+  private static void makeAllSumsH(int n, ArrayList<Integer> ary, int ans){
     // if reached end of numbers, return the arraylist
     if (n == 0){
       // add the number if it has not been included yet (after finishing one branch of the sum tree)
-      if (include){
         ary.add(ans);
       }
-    }
     // otherwise, recursively call method for the next number
     // including or not including it in the sum
     else{
-      if (include){
-        makeAllSumsH(n-1, ary, ans+n, true);
-        makeAllSumsH(n-1, ary, ans+n, false);
-      }
-      else{
-        makeAllSumsH(n-1, ary, ans, true);
-        makeAllSumsH(n-1, ary, ans, false);
+        makeAllSumsH(n-1, ary, ans+n);
+        makeAllSumsH(n-1, ary, ans);
       }
     }
-
-
-  }
 
 }
