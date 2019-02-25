@@ -1,5 +1,5 @@
 import java.util.*;
-
+// collection of recursion methods
 public class recursion{
   public static void main(String[] args){
     System.out.println("Square root of 100, tolerance of 0.00001 (0.001%): " + sqrt(100, 0.00001));
