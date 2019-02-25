@@ -35,13 +35,17 @@ public class Recursion{
     if (n == 0){
       return 0; // handle case of n being 0, i.e. sqrt(0) = 0
     }
-    else{
-      // while difference between guess squared and n is within tolerance
-      while (Math.abs( (Math.pow(guess,2) - n) / n * 100) > tolerance){
-        // update the guess
-        guess = (n/guess+guess)/2;
-      }
+    // if approximate sqrt is reached, return guess
+    if (Math.abs( (Math.pow(guess,2) - n) / n) <= tolerance){
       return guess;
+    }
+    else{
+      // if difference between guess squared and n is within tolerance
+
+        // recursively call with updated guess
+
+        return sqrtH(n, (n/guess+guess)/2, tolerance);
+
     }
   }
 
